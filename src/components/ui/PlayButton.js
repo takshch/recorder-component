@@ -4,7 +4,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 export default function PlayButton() {
   return (
-    <span class="play-button">
+    <span className="play-button">
       <FontAwesomeIcon icon={faPlay} color="#6f4ad2" />
     </span>
   );

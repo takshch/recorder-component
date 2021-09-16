@@ -4,7 +4,7 @@ import { faPause } from "@fortawesome/free-solid-svg-icons";
 
 export default function PauseButton() {
   return (
-    <span class="pause-button">
+    <span className="pause-button">
       <FontAwesomeIcon icon={faPause} />
     </span>
   );

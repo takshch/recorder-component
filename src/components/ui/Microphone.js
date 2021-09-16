@@ -4,7 +4,7 @@ import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
 export default function Microphone() {
   return (
-    <span class="microphone">
+    <span className="microphone">
       <FontAwesomeIcon icon={faMicrophone} color="#000" />
     </span>
   );
