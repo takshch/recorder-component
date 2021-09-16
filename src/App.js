@@ -1,10 +1,10 @@
 import "./App.css";
-import Box from "./components/ui/Box";
+import Recorder from "./components/container/Recorder";
 
 function App() {
   return (
     <div className="App">
-      <Box />
+      <Recorder />
     </div>
   );
 }

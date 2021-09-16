@@ -82,6 +82,7 @@ body {
   padding: 0.55em;
   font-family: "Roboto", sans-serif;
   font-size: 400;
+  color: #fff;
 }
 
 .box::before {
@@ -102,6 +103,12 @@ body {
   width: 100%;
 }
 
+.box__bottom {
+  flex: auto;
+  display: flex;
+  align-items: center;
+}
+
 .box__details {
   display: flex;
   flex-direction: column;
@@ -110,20 +117,25 @@ body {
 .box__text {
   color: #fff;
   font-size: 0.6em;
-  line-height: 0.8em;
 }
 
-.box__text--grey {
+.box__text--status {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.box__text--grey-2 {
+.box__text--total-time {
   color: rgba(255, 255, 255, 0.5);
+  font-size: 0.5em;
 }
 
-.box__text--timer {
-  font-size: 0.8em;
+.box__text--time-spent {
+  font-size: 0.84em;
   font-weight: 700;
+  margin-right: 5px;
+}
+
+.box__timer {
+  line-height: 1em;
 }
 
 .box__actions {
@@ -150,4 +162,8 @@ body {
 .box-button--purple {
   color: #fff;
   background: #6f4ad2;
+}
+
+.box__recorder {
+  width: 100%;
 }
