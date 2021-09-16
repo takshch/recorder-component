@@ -1,38 +1,64 @@
+body {
+  background-color: #eaeaea;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.microphone {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #fff;
+  height: 2em;
+  width: 2em;
+  padding: 0.9em;
+  border-radius: 50%;
+  margin: auto;
+  font-size: 0.7em;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.microphone > .fa-microphone {
+  font-size: 1.9em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7em;
+  height: 2.7em;
+  border-radius: 50%;
+  border: 3px solid #6f4ad2;
+  position: relative;
+  cursor: pointer;
+}
+
+.play-button > .fa-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  font-size: 1.05em;
+}
+
+.pause-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7em;
+  height: 2.7em;
+  border-radius: 50%;
+  position: relative;
+  background: #fff;
+  cursor: pointer;
+}
+
+.play-button > .fa-pause {
+  font-size: 0.7em;
 }
