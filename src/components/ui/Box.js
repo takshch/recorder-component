@@ -13,9 +13,12 @@ export default function Box(props) {
     shouldRecord,
     pauseRecord,
     startRecord,
+    onStop,
+    visible,
   } = props;
+
   return (
-    <div className="box-wrapper">
+    <div className={`box-wrapper ${visible ? "" : "box-wrapper--hidden"}`}>
       <div className="box">
         <div className="box__header">
           <div className="box__details">
@@ -36,21 +39,19 @@ export default function Box(props) {
         </div>
         <div className="box__bottom">
           <div>
-            {shouldRecord ? (
-              <ReactMic
-                record={shouldRecord}
-                strokeColor="#fff"
-                backgroundColor="transparent"
-                className="box__recorder"
-              />
-            ) : (
-              <Microphone
-                onClick={() => {
-                  console.log("clicked on Microphone");
-                  startRecord();
-                }}
-              />
-            )}
+            <ReactMic
+              record={shouldRecord}
+              onStop={onStop}
+              visualSetting="sinewave"
+              strokeColor="#fff"
+              backgroundColor="#061732"
+              className="box__recorder"
+              mimeType="audio/webm"
+              className="box__recorder"
+              echoCancellation={true}
+              autoGainControl={true}
+              noiseSuppression={true}
+            />
           </div>
         </div>
       </div>

@@ -69,6 +69,11 @@ body {
 .box-wrapper {
 }
 
+.box-wrapper--hidden {
+  visibility: hidden;
+  position: absolute;
+}
+
 .box {
   width: 10em;
   height: 5em;
@@ -107,6 +112,9 @@ body {
   flex: auto;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  font-size: 0.5em;
+  justify-content: center;
 }
 
 .box__details {
@@ -166,4 +174,11 @@ body {
 
 .box__recorder {
   width: 100%;
+}
+
+.recorder {
+  position: relative;
+  display:  flex;
+  justify-content: center;
+  align-items: center;  
 }
