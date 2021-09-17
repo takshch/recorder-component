@@ -1,3 +1,7 @@
+# Note 
+This uses own modified version of react-mic    
+react-mic doesn't support all browsers
+
 # Screenshots
 ![image](https://user-images.githubusercontent.com/26649558/133843103-82030cb6-4240-4cfe-b513-24a440a09c82.png)
 ![image](https://user-images.githubusercontent.com/26649558/133843129-9575b6be-8cef-46d5-a49e-c21caa909785.png)
