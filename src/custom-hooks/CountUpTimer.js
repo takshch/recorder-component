@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import useInterval from "use-interval";
 
 const CountUpTimer = ({ time, onExpire, onStart }) => {
@@ -6,23 +6,24 @@ const CountUpTimer = ({ time, onExpire, onStart }) => {
   const [minutes, setMinutes] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
-  const serializedTime = {
-    seconds: time.seconds || 0,
-    minutes: time.minutes || 0,
-  };
+  const [timerTime, setTimerTime] = useState(null);
+
+  useEffect(() => {
+    setTimerTime({
+      seconds: time.seconds || 0,
+      minutes: time.minutes || 0,
+    });
+  }, []);
 
   const pause = () => {
     setIsRunning(false);
   };
 
   const checkTimeCompletion = () => {
-    if (
-      serializedTime.seconds <= seconds &&
-      serializedTime.minutes <= minutes
-    ) {
+    if (timerTime.seconds <= seconds && timerTime.minutes <= minutes) {
       pause();
       setIsCompleted(true);
-      onExpire && onExpire();
+      onExpire && onExpire({ seconds, minutes });
 
       return true;
     }
@@ -62,6 +63,7 @@ const CountUpTimer = ({ time, onExpire, onStart }) => {
     pause,
     restart,
     start,
+    isCompleted,
   };
 };
 

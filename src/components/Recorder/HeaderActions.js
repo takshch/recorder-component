@@ -9,7 +9,7 @@ export default function BoxHeaderActions(props) {
       {stillRecording ? <PauseButton onClick={stopRecording} /> : null}
       <BoxButton
         text="Send"
-        purple={hasRecording}
+        purple={hasRecording.toString()}
         onClick={() => {
           if (hasRecording) console.log(recording);
         }}

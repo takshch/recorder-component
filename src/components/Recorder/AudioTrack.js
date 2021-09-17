@@ -20,24 +20,24 @@ export default function AudioTrack({
         setTrackProgress(audioRef.current.currentTime);
       } else {
         setTrackProgress(0);
-        stopPlaying();
+        stopPlaying({ end: true });
       }
     }, []);
   };
 
-  const onScrub = (value) => {
-    clearInterval(intervalRef.current);
-    audioRef.current.currentTime = value;
-    setTrackProgress(audioRef.current.currentTime);
-  };
+  // const onScrub = (value) => {
+  //   clearInterval(intervalRef.current);
+  //   audioRef.current.currentTime = value;
+  //   setTrackProgress(audioRef.current.currentTime);
+  // };
 
-  const onScrubEnd = () => {
-    // If not already playing, start
-    if (!isPlaying) {
-      startPlaying();
-    }
-    startTimer();
-  };
+  // const onScrubEnd = () => {
+  //   // If not already playing, start
+  //   if (!isPlaying) {
+  //     startPlaying();
+  //   }
+  //   startTimer();
+  // };
 
   useEffect(() => {
     if (isPlaying) {
@@ -68,11 +68,8 @@ export default function AudioTrack({
         min="0"
         step="0.001"
         max={duration ? duration : `${duration}`}
-        className="progress"
-        onChange={(e) => onScrub(e.target.value)}
-        onMouseUp={onScrubEnd}
-        onKeyUp={onScrubEnd}
         className="box__progress"
+        readOnly
       />
     </React.Fragment>
   );

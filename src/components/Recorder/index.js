@@ -1,9 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Recording from "./Recording";
-import { ReactMic } from "react-mic";
+import { ReactMic } from "../../react-mic/index";
 import BoxHeaderActions from "./HeaderActions";
 import BoxHeaderDetails from "./HeaderDetails";
 import CountUpTimer from "../../custom-hooks/CountUpTimer";
+
+const visualizerGradient = (ctx) => {
+  const gradient = ctx.createLinearGradient(0, 50, 640, 50);
+  gradient.addColorStop(0, "#b721ff");
+  gradient.addColorStop(1, "#21d4fd");
+
+  return gradient;
+};
 
 export default function Recorder({ seconds: maxTime, hasStarted }) {
   const [status, setStatus] = useState("Start");
@@ -12,10 +20,11 @@ export default function Recorder({ seconds: maxTime, hasStarted }) {
   const [timeSpent, setTimeSpent] = useState(null);
   const [hasRecording, setHasRecording] = useState(false);
   const [recording, setRecording] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(null);
+  const [recordedTime, setRecordedTime] = useState(null);
 
   const time = {
-    seconds: 30,
+    seconds: 4,
   };
 
   const {
@@ -26,12 +35,13 @@ export default function Recorder({ seconds: maxTime, hasStarted }) {
     restart: restartTimer,
   } = CountUpTimer({
     time,
-    onExpire: () => {
-      setStillRecording(false);
+    onExpire: (time) => {
+      if (!recordedTime) {
+        setRecordedTime(time);
+        setStillRecording(false);
+      }
     },
   });
-
-  //recording related
 
   const onStop = (recordedBlob) => {
     const { blobURL } = recordedBlob;
@@ -61,11 +71,22 @@ export default function Recorder({ seconds: maxTime, hasStarted }) {
   };
 
   const startPlaying = () => {
+    if (isPlaying === null) {
+      restartTimer(recordedTime);
+    } else {
+      startTimer();
+    }
+
     setIsPlaying(true);
     setStatus("Recording playing");
   };
 
-  const stopPlaying = () => {
+  const stopPlaying = ({ end }) => {
+    if (end) {
+      restartTimer(recordedTime);
+    }
+
+    pauseTimer();
     setIsPlaying(false);
     setStatus("Recording pause");
   };
@@ -117,7 +138,7 @@ export default function Recorder({ seconds: maxTime, hasStarted }) {
               record={stillRecording}
               onStop={onStop}
               visualSetting="sinewave"
-              strokeColor="#fff"
+              strokeColor={visualizerGradient}
               backgroundColor="#061732"
               className="box__recorder"
               mimeType="audio/mp3"
