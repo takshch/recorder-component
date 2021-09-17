@@ -24,7 +24,7 @@ export default function Recorder({ seconds: maxTime, hasStarted }) {
   const [recordedTime, setRecordedTime] = useState(null);
 
   const time = {
-    seconds: 4,
+    seconds: 30,
   };
 
   const {
